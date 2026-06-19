@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlashShop Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Sidebar mobile overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- =====================
+       Sidebar
+  ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">F</div>
+      <div class="logo-text">Flash<span>Shop</span></div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main Menu</div>
+      <button class="nav-item active" id="nav-dashboard">
+        <i class="ti ti-layout-dashboard"></i> Dashboard
+      </button>
+      <button class="nav-item" id="nav-products">
+        <i class="ti ti-box"></i> Products
+      </button>
+      <button class="nav-item" id="nav-add-product">
+        <i class="ti ti-circle-plus"></i> Add Product
+      </button>
+      <button class="nav-item" id="nav-orders">
+        <i class="ti ti-shopping-bag"></i> Orders
+      </button>
+      <button class="nav-item" id="nav-customers">
+        <i class="ti ti-users"></i> Customers
+      </button>
+
+      <div class="sidebar-section-label">Store</div>
+      <button class="nav-item" id="nav-categories">
+        <i class="ti ti-category"></i> Categories
+      </button>
+      <button class="nav-item" id="nav-inventory">
+        <i class="ti ti-package"></i> Inventory
+      </button>
+      <button class="nav-item" id="nav-analytics">
+        <i class="ti ti-chart-line"></i> Analytics
+      </button>
+
+      <div class="sidebar-section-label">System</div>
+      <button class="nav-item" id="nav-settings">
+        <i class="ti ti-settings"></i> Settings
+      </button>
+    </nav>
+
+    <div class="sidebar-logout">
+      <button class="nav-item" id="nav-logout">
+        <i class="ti ti-logout"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+
+  <!-- =====================
+       Main Wrapper
+  ===================== -->
+  <div class="main-wrap">
+
+    <!-- Top Navbar -->
+    <header class="topbar">
+      <button class="icon-btn menu-toggle" id="menuToggleBtn" aria-label="Open menu">
+        <i class="ti ti-menu-2"></i>
+      </button>
+
+      <div class="topbar-search">
+        <i class="ti ti-search"></i>
+        <input type="text" placeholder="Search products, orders, customers..." />
+      </div>
+
+      <div class="topbar-right">
+        <div class="icon-btn">
+          <i class="ti ti-bell"></i>
+          <span class="notif-badge">4</span>
+        </div>
+        <div class="icon-btn">
+          <i class="ti ti-message"></i>
+          <span class="notif-badge">2</span>
+        </div>
+        <div class="admin-avatar">
+          <div class="avatar-circle">AD</div>
+          <div class="admin-info">
+            <div class="admin-name">Admin</div>
+            <div class="admin-role">Super Admin</div>
+          </div>
+          <i class="ti ti-chevron-down" style="font-size: 14px; color: var(--gray-400);"></i>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- Page Content -->
+    <main class="content">
+
+      <!-- =====================
+           Dashboard Page
+      ===================== -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Dashboard</div>
+            <div class="page-subtitle">Welcome back, Admin! Here's what's happening today.</div>
+          </div>
+          <button class="btn btn-primary">
+            <i class="ti ti-download"></i> Export Report
+          </button>
+        </div>
+
+        <!-- Overview stat cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--info-dim); color: var(--info);">
+              <i class="ti ti-box"></i>
+            </div>
+            <div>
+              <div class="stat-label">Total Products</div>
+              <div class="stat-value">284</div>
+              <div class="stat-change stat-up">
+                <i class="ti ti-arrow-up" style="font-size: 11px;"></i> +12 this month
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--pink-dim); color: var(--pink);">
+              <i class="ti ti-shopping-bag"></i>
+            </div>
+            <div>
+              <div class="stat-label">Total Orders</div>
+              <div class="stat-value">1,842</div>
+              <div class="stat-change stat-up">
+                <i class="ti ti-arrow-up" style="font-size: 11px;"></i> +8.2% vs last month
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--success-dim); color: var(--success);">
+              <i class="ti ti-currency-dollar"></i>
+            </div>
+            <div>
+              <div class="stat-label">Total Revenue</div>
+              <div class="stat-value">$94.2K</div>
+              <div class="stat-change stat-up">
+                <i class="ti ti-arrow-up" style="font-size: 11px;"></i> +14.5% growth
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--warning-dim); color: var(--warning);">
+              <i class="ti ti-users"></i>
+            </div>
+            <div>
+              <div class="stat-label">Total Customers</div>
+              <div class="stat-value">5,390</div>
+              <div class="stat-change stat-up">
+                <i class="ti ti-arrow-up" style="font-size: 11px;"></i> +201 new users
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--danger-dim); color: var(--danger);">
+              <i class="ti ti-alert-triangle"></i>
+            </div>
+            <div>
+              <div class="stat-label">Low Stock</div>
+              <div class="stat-value">18</div>
+              <div class="stat-change stat-down">
+                <i class="ti ti-arrow-down" style="font-size: 11px;"></i> Needs attention
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue chart + top products -->
+        <div class="dash-grid">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Revenue Overview</div>
+              <select style="width: auto;">
+                <option>Last 6 months</option>
+                <option>Last year</option>
+              </select>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="revenueChart"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Top Selling Products</div>
+            </div>
+            <div id="topProdsMain"></div>
+          </div>
+        </div>
+
+        <!-- Recent orders -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Recent Orders</div>
+            <button class="btn btn-outline btn-sm" id="viewAllOrdersBtn">View All</button>
+          </div>
+          <div class="table-wrap" id="recentOrdersTable"></div>
+        </div>
+      </div>
+
+
+      <!-- =====================
+           Products Page
+      ===================== -->
+      <div class="page" id="page-products">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Products</div>
+            <div class="page-subtitle">Manage your store's product catalog</div>
+          </div>
+          <button class="btn btn-primary" id="goToAddProductBtn">
+            <i class="ti ti-plus"></i> Add Product
+          </button>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <!-- Filters row -->
+          <div style="display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
+            <div class="topbar-search" style="max-width: 280px;">
+              <i class="ti ti-search"></i>
+              <input type="text" placeholder="Search products..." />
+            </div>
+            <select style="width: auto;">
+              <option>All Categories</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Home</option>
+              <option>Books</option>
+              <option>Sports</option>
+            </select>
+            <select style="width: auto;">
+              <option>All Status</option>
+              <option>In Stock</option>
+              <option>Low Stock</option>
+              <option>Out of Stock</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="productsPagination"></div>
+        </div>
+      </div>
+
+
+      <!-- =====================
+           Add Product Page
+      ===================== -->
+      <div class="page" id="page-add-product">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Add Product</div>
+            <div class="page-subtitle">Create a new product listing</div>
+          </div>
+        </div>
+
+        <div class="add-product-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+          <!-- Left column -->
+          <div>
+            <div class="card">
+              <div class="card-title" style="margin-bottom: 16px;">Product Information</div>
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label for="prod-name">Product Name</label>
+                  <input type="text" id="prod-name" placeholder="e.g. Wireless Headphones Pro" />
+                </div>
+                <div class="form-group full">
+                  <label for="prod-desc">Description</label>
+                  <textarea id="prod-desc" placeholder="Describe the product features, specifications, and benefits..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="prod-cat">Category</label>
+                  <select id="prod-cat">
+                    <option value="">Select category</option>
+                    <option>Electronics</option>
+                    <option>Fashion</option>
+                    <option>Home</option>
+                    <option>Books</option>
+                    <option>Sports</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="prod-brand">Brand</label>
+                  <input type="text" id="prod-brand" placeholder="Brand name" />
+                </div>
+                <div class="form-group">
+                  <label for="prod-price">Price ($)</label>
+                  <input type="number" id="prod-price" placeholder="0.00" />
+                </div>
+                <div class="form-group">
+                  <label for="prod-compare">Compare Price ($)</label>
+                  <input type="number" id="prod-compare" placeholder="0.00" />
+                </div>
+                <div class="form-group">
+                  <label for="prod-sku">SKU</label>
+                  <input type="text" id="prod-sku" placeholder="e.g. SKU-0001" />
+                </div>
+                <div class="form-group">
+                  <label for="prod-stock">Stock Quantity</label>
+                  <input type="number" id="prod-stock" placeholder="0" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div>
+            <div class="card">
+              <div class="card-title" style="margin-bottom: 16px;">Product Image</div>
+              <div class="upload-area">
+                <i class="ti ti-cloud-upload"></i>
+                <p><span>Click to upload</span> or drag and drop</p>
+                <p style="margin-top: 4px; font-size: 11px;">PNG, JPG, WEBP up to 10MB</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title" style="margin-bottom: 16px;">Status</div>
+              <div class="form-group">
+                <label for="prod-status">Product Status</label>
+                <select id="prod-status">
+                  <option>Published</option>
+                  <option>Draft</option>
+                  <option>Archived</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+              <i class="ti ti-device-floppy"></i> Save Product
+            </button>
+            <button class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 8px;">
+              Save as Draft
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- =====================
+           Orders Page
+      ===================== -->
+      <div class="page" id="page-orders">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Orders</div>
+            <div class="page-subtitle">Track and manage customer orders</div>
+          </div>
+          <button class="btn btn-outline">
+            <i class="ti ti-download"></i> Export CSV
+          </button>
+        </div>
+
+        <!-- Mini summary stats -->
+        <div class="orders-summary-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
+          <div class="stat-card" style="padding: 14px;">
+            <div class="stat-icon" style="width: 38px; height: 38px; border-radius: 10px; font-size: 18px; background: var(--info-dim); color: var(--info);">
+              <i class="ti ti-clock"></i>
+            </div>
+            <div>
+              <div class="stat-label">Pending</div>
+              <div class="stat-value" style="font-size: 20px;">42</div>
+            </div>
+          </div>
+          <div class="stat-card" style="padding: 14px;">
+            <div class="stat-icon" style="width: 38px; height: 38px; border-radius: 10px; font-size: 18px; background: var(--warning-dim); color: var(--warning);">
+              <i class="ti ti-truck"></i>
+            </div>
+            <div>
+              <div class="stat-label">Shipped</div>
+              <div class="stat-value" style="font-size: 20px;">128</div>
+            </div>
+          </div>
+          <div class="stat-card" style="padding: 14px;">
+            <div class="stat-icon" style="width: 38px; height: 38px; border-radius: 10px; font-size: 18px; background: var(--success-dim); color: var(--success);">
+              <i class="ti ti-check"></i>
+            </div>
+            <div>
+              <div class="stat-label">Delivered</div>
+              <div class="stat-value" style="font-size: 20px;">1,620</div>
+            </div>
+          </div>
+          <div class="stat-card" style="padding: 14px;">
+            <div class="stat-icon" style="width: 38px; height: 38px; border-radius: 10px; font-size: 18px; background: var(--danger-dim); color: var(--danger);">
+              <i class="ti ti-x"></i>
+            </div>
+            <div>
+              <div class="stat-label">Cancelled</div>
+              <div class="stat-value" style="font-size: 20px;">52</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Products</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="ordersPagination"></div>
+        </div>
+      </div>
+
+
+      <!-- =====================
+           Customers Page
+      ===================== -->
+      <div class="page" id="page-customers">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Customers</div>
+            <div class="page-subtitle">Manage your customer base</div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <div class="topbar-search" style="max-width: 240px;">
+              <i class="ti ti-search"></i>
+              <input type="text" placeholder="Search customers..." />
+            </div>
+            <button class="btn btn-outline">
+              <i class="ti ti-download"></i> Export
+            </button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Orders</th>
+                  <th>Registered</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="customersTableBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="customersPagination"></div>
+        </div>
+      </div>
+
+
+      <!-- =====================
+           Categories Page
+      ===================== -->
+      <div class="page" id="page-categories">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Categories</div>
+            <div class="page-subtitle">Manage product categories</div>
+          </div>
+          <button class="btn btn-primary">
+            <i class="ti ti-plus"></i> Add Category
+          </button>
+        </div>
+
+        <div id="categoriesGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;"></div>
+      </div>
+
+
+      <!-- =====================
+           Inventory Page
+      ===================== -->
+      <div class="page" id="page-inventory">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Inventory</div>
+            <div class="page-subtitle">Track stock levels and alerts</div>
+          </div>
+          <button class="btn btn-outline">
+            <i class="ti ti-refresh"></i> Sync Stock
+          </button>
+        </div>
+
+        <div id="inventoryAlerts" style="margin-bottom: 20px;"></div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Stock Overview</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Stock Level</th>
+                  <th>Qty</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- =====================
+           Analytics Page
+      ===================== -->
+      <div class="page" id="page-analytics">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Analytics</div>
+            <div class="page-subtitle">Performance insights and trends</div>
+          </div>
+          <select style="width: auto;">
+            <option>Last 30 days</option>
+            <option>Last 3 months</option>
+            <option>Last year</option>
+          </select>
+        </div>
+
+        <!-- KPI cards -->
+        <div class="stats-grid" style="margin-bottom: 24px;">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--success-dim); color: var(--success);"><i class="ti ti-currency-dollar"></i></div>
+            <div><div class="stat-label">Revenue</div><div class="stat-value">$94.2K</div><div class="stat-change stat-up">+14.5%</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--pink-dim); color: var(--pink);"><i class="ti ti-shopping-cart"></i></div>
+            <div><div class="stat-label">Orders</div><div class="stat-value">1,842</div><div class="stat-change stat-up">+8.2%</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--info-dim); color: var(--info);"><i class="ti ti-eye"></i></div>
+            <div><div class="stat-label">Page Views</div><div class="stat-value">128K</div><div class="stat-change stat-up">+22%</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--warning-dim); color: var(--warning);"><i class="ti ti-percentage"></i></div>
+            <div><div class="stat-label">Conversion</div><div class="stat-value">3.8%</div><div class="stat-change stat-down">-0.3%</div></div>
+          </div>
+        </div>
+
+        <!-- Revenue + Orders charts -->
+        <div class="charts-grid">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Monthly Revenue</div></div>
+            <div class="chart-wrap"><canvas id="analyticsRevenueChart"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Orders by Month</div></div>
+            <div class="chart-wrap"><canvas id="analyticsOrdersChart"></canvas></div>
+          </div>
+        </div>
+
+        <!-- Recent orders + top products -->
+        <div class="dash-grid">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Recent Orders</div></div>
+            <div class="table-wrap" id="analyticsOrdersTable"></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Top Selling</div></div>
+            <div id="topProdsList"></div>
+            <div style="margin-top: 16px;">
+              <canvas id="topProdsChart" style="max-height: 180px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- =====================
+           Settings Page
+      ===================== -->
+      <div class="page" id="page-settings">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Settings</div>
+            <div class="page-subtitle">Manage your store configuration</div>
+          </div>
+        </div>
+
+        <div class="add-product-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <!-- Store info -->
+          <div class="card">
+            <div class="card-title" style="margin-bottom: 16px;">Store Information</div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="form-group">
+                <label>Store Name</label>
+                <input type="text" value="FlashShop" />
+              </div>
+              <div class="form-group">
+                <label>Store Email</label>
+                <input type="email" value="admin@flashshop.com" />
+              </div>
+              <div class="form-group">
+                <label>Store Phone</label>
+                <input type="tel" value="+1 (555) 000-0000" />
+              </div>
+              <div class="form-group">
+                <label>Currency</label>
+                <select>
+                  <option>USD ($)</option>
+                  <option>EUR (euro)</option>
+                  <option>GBP (pound)</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" style="align-self: flex-start;">
+                <i class="ti ti-device-floppy"></i> Save Changes
+              </button>
+            </div>
+          </div>
+
+          <!-- Admin account -->
+          <div class="card">
+            <div class="card-title" style="margin-bottom: 16px;">Admin Account</div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; align-items: center; gap: 14px; padding: 16px; background: var(--gray-50); border-radius: var(--radius);">
+                <div class="avatar-circle" style="width: 52px; height: 52px; font-size: 18px;">AD</div>
+                <div>
+                  <div style="font-weight: 600;">Admin User</div>
+                  <div style="font-size: 12px; color: var(--gray-400);">Super Administrator</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" value="Admin User" />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" value="admin@flashshop.com" />
+              </div>
+              <div class="form-group">
+                <label>New Password</label>
+                <input type="text" placeholder="Leave blank to keep current" />
+              </div>
+              <button class="btn btn-navy" style="align-self: flex-start;">
+                <i class="ti ti-device-floppy"></i> Update Account
+              </button>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="card">
+            <div class="card-title" style="margin-bottom: 16px;">Notifications</div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 500;">New Order Alerts</div>
+                  <div style="font-size: 12px; color: var(--gray-400);">Get notified for new orders</div>
+                </div>
+                <div style="width: 42px; height: 24px; background: var(--pink); border-radius: 24px; cursor: pointer; position: relative;">
+                  <div style="position: absolute; right: 3px; top: 3px; width: 18px; height: 18px; background: white; border-radius: 50%;"></div>
+                </div>
+              </div>
+              <div style="height: 1px; background: var(--gray-100);"></div>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 500;">Low Stock Warnings</div>
+                  <div style="font-size: 12px; color: var(--gray-400);">Alert when stock drops below 10</div>
+                </div>
+                <div style="width: 42px; height: 24px; background: var(--pink); border-radius: 24px; cursor: pointer; position: relative;">
+                  <div style="position: absolute; right: 3px; top: 3px; width: 18px; height: 18px; background: white; border-radius: 50%;"></div>
+                </div>
+              </div>
+              <div style="height: 1px; background: var(--gray-100);"></div>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 500;">Customer Reviews</div>
+                  <div style="font-size: 12px; color: var(--gray-400);">Notify on new product reviews</div>
+                </div>
+                <div style="width: 42px; height: 24px; background: var(--gray-200); border-radius: 24px; cursor: pointer; position: relative;">
+                  <div style="position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; background: white; border-radius: 50%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping & Tax -->
+          <div class="card">
+            <div class="card-title" style="margin-bottom: 16px;">Shipping and Tax</div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="form-group">
+                <label>Default Shipping Fee ($)</label>
+                <input type="number" value="5.99" />
+              </div>
+              <div class="form-group">
+                <label>Free Shipping Threshold ($)</label>
+                <input type="number" value="50" />
+              </div>
+              <div class="form-group">
+                <label>Tax Rate (%)</label>
+                <input type="number" value="8.5" />
+              </div>
+              <button class="btn btn-primary" style="align-self: flex-start;">
+                <i class="ti ti-device-floppy"></i> Save Settings
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
